@@ -6,11 +6,50 @@
 
     <groupId>org.alexcloud</groupId>
     <artifactId>cloud-tech</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>customer</module>
+        <module>awss3test</module>
+    </modules>
+    <name>alexcloud</name>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <spring.boot.maven.plugin.version>2.6.7</spring.boot.maven.plugin.version>
+        <spring.boot.dependencies.version>2.6.7</spring.boot.dependencies.version>
+        <lombok.version>1.18.24</lombok.version>
     </properties>
+
+<!--    it means that we manage all dependencies that we need in all our project using this parent project-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.dependencies.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.24</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>springdoclet-maven-plugin</artifactId>
+                    <version>${spring.boot.maven.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
